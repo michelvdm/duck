@@ -7,6 +7,7 @@ class AppController extends BaseController {
 		$this->model=new AppModel($this->dbConfig);
 		$this->data=$this->model->getConfig();
 		date_default_timezone_set($this->data['timezone']);
+		
 		$this->handleRequest($request);
 	}
 	
@@ -16,6 +17,10 @@ class AppController extends BaseController {
 			'title'=>'Index',
 			'body'=>''
 		]);
+	}
+
+	function renderView(){
+		new AppView($this->data);
 	}
 
 }

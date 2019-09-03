@@ -44,10 +44,11 @@ class BaseController {
 
 	function handleRequest($request){
 		$method=strtolower($_SERVER['REQUEST_METHOD']);
+		if($request[0]=='')$request[0]='index';
 		$fn=$method.ucfirst($request[0]);
 		if(method_exists( $this, $fn)) {
 			call_user_func(array($this, $fn));
-			if($method=='get') new AppView($this->data);
+			if($method=='get') $this->renderView();
 		}	else {
 			$this->setData([
 				'type'=>'static', 
@@ -55,7 +56,7 @@ class BaseController {
 				'title'=>'Error in '.__CLASS__, 
 				'body'=>'<p>Method does not exist: '.$fn.'</p>'
 			]);
-			if(DEBUG) new AppView($this->data);
+			if(DEBUG) $this->renderView();
 			else die("Invalid request");
 		}
 	}

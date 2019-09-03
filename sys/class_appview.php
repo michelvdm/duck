@@ -1,49 +1,10 @@
 <?php defined('BASE') or die("Access denied");
 
-class AppView {
+class AppView extends BaseView {
 
 	function __construct($data){
 		$this->data=$data;
 		$this->render(BASE.'/sys/tpl_app.html');
-	}
-
-	function renderMessage(){
-		if(isset($_SESSION['message'])){
-			extract($_SESSION['message']);
-			tag("div class=\"ux-message $type\"", $text);
-			unset($_SESSION['message']);
-		};
-	}
-
-	function renderStatic() {
-		extract($this->data);
-		if(isset($errCode)) http_response_code($errCode);
-		tag('h1', $title);
-		echo $body;
-	}
-
-	function beginForm($action, $title=null){
-		out("<form method=\"post\" action=\"$action\">");
-		if(isset($title)) tag('h1', $title);
-		out('<ul>');
-	}
-
-	function endForm(){
-		out('</ul>');
-		out('<ux-actions><button>Submit</button></ux-actions>');
-		out('</form>');
-	}
-
-	function input($label, $key, $val='', $opt=''){
-		out('<li><label><i>'.$label.': </i><input name="'.$key.'" value="'.$val.'"'.$opt.'></label></li>');
-	}
-
-	function password(){
-		out('<li ux-password-area>');
-		out('<label><i>Password: </i>');
-		out('<input name="password" type="password" autocomplete="current-password" required></label>');
-		out('<button><svg><use href="#eye"></use></svg><svg><use href="#eye-off"></use></svg></button>');
-		out('</li>');
 	}
 
 	function renderLogin(){
