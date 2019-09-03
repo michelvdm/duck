@@ -1,0 +1,133 @@
+/* resets */
+html, body, h1, h2, p, figure, nav ul, form ul {margin: 0; padding: 0;}
+[hidden] {display: none;}
+svg {display: inline-block; width: 24px; height: 24px; vertical-align: sub; fill: currentColor;}
+button, input, textarea {font-family: inherit; font-size: inherit; color: inherit;}
+button {border: none; background-color: transparent; cursor: pointer;}
+img {max-width: 100%;}
+b, i {font-weight: normal; font-style: normal;}
+nav ul, form ul {list-style: none;}
+nav a {
+	color: inherit; 
+	display: block; 
+	text-decoration: none; 
+	font-size: 20px; 
+	line-height: 24px; 
+	padding: 12px var(--space);
+	border-bottom: solid 1px var(--divider);
+}
+
+/* theme */
+:root {
+	--primary: #2D3844;
+	--accent: #F7941D; 
+	--text: #333; 
+	--offwhite: #f0f0f0;
+	--divider: #ccc;
+
+	--max-width: 1200px;
+	--space: 16px;
+	--space-large: 32px;
+	--space-xl: 64px;
+	--nav-width: 300px;
+}
+
+/* typography */
+body {
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+	color: var(--text);
+}
+h1, h2 {line-height: 1.2;}
+h1 {
+	font-size: 35px;
+	margin-bottom: var(--space-large);
+}
+h2 {font-size: 40px;}
+
+/* layout */
+html, body {height: 100%;}
+body {display: flex;}
+aside {
+	width: var(--nav-width);
+	background-color: var(--offwhite);
+	border-right: solid 1px var(--divider);
+}
+
+main {
+	flex: 1; 
+	padding: var(--space-large);
+}
+button {padding: 12px; line-height: 24px; height: 48px;}
+footer {
+	font-size: smaller; 
+	text-align: center;
+	padding: 8px;
+	border-top: solid 1px var(--divider);
+}
+
+/* header */
+header {
+	background-color: var(--primary);
+	color: #fff;
+	font-size: 20px;
+	line-height: 24px;
+}
+header b {
+	color: inherit;
+	text-decoration: none;
+	display: inline-block;
+	padding: 12px var(--space);
+}
+
+.ux-message {
+	color: #00e;
+	border: solid 2px currentColor;
+	border-radius: 5px;
+	padding: var(--space);
+	margin-bottom: var(--space);
+}
+.ux-message.error {
+	color: #e00;
+}
+.ux-message.error::before {
+	content: "Error: ";
+	font-weight: bold;
+}
+
+/* forms */
+form {
+	padding: var(--space-large);
+	background-color: var(--offwhite);
+	max-width: 600px;
+	margin: auto;
+}
+form li {margin-bottom: var(--space);}
+label i {
+	display: block;
+	margin-bottom: 4px;
+	font-size: smaller;
+}
+input {
+	padding: 11px var(--space); 
+	line-height: 24px;
+	border-radius: 5px; 
+	box-sizing: border-box;
+	width: 100%;
+	border: solid 1px var(--divider);
+}
+[ux-password-area] {position: relative; padding-right: 48px;}
+[ux-password-area] button {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+[ux-password-area]:not(.ux-show-pw) svg:last-child{display: none;}
+[ux-password-area].ux-show-pw svg:first-child{display: none;}
+form ux-actions {display: block; text-align: center;}
+form ux-actions button {
+	background-color: var(--accent);
+	color: #fff;
+	border-radius: 5px;
+}
