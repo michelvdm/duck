@@ -14,11 +14,6 @@ class AppView extends BaseView {
 		$this->endForm();
 	}
 
-	function renderUserInfo(){
-		if(isset($_SESSION['userName'])) echo $_SESSION['userName'], ' - <a href="'.ROOT.'/logout">Log out</a>';
-		else echo 'Anonymous - <a href="'.ROOT.'/login">Log in</a>';
-	}
-
 	function renderAdminLink(){
 		if(isset($_SESSION['userName'])) echo '<a href="'.ROOT.'/admin" class="ux-admin-link"><svg><use href="#cogs"></use></svg></a>';
 	}

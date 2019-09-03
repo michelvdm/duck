@@ -19,9 +19,10 @@ nav a {
 
 /* theme */
 :root {
-	--primary: #2D3844;
+	--primary: #000;
 	--accent: #F7941D; 
 	--text: #333; 
+	--secondary-text: #666;
 	--offwhite: #f0f0f0;
 	--divider: #ccc;
 
@@ -37,7 +38,7 @@ body {
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 	font-size: 16px;
 	line-height: 1.5;
-	color: var(--text);
+	color: var(--secondary-text);
 }
 h1, h2 {line-height: 1.2;}
 h1 {
@@ -53,6 +54,10 @@ aside {
 	width: var(--nav-width);
 	background-color: var(--offwhite);
 	border-right: solid 1px var(--divider);
+}
+aside .ux-active {
+	background-color: #fff;
+	color: var(--accent);
 }
 
 main {
@@ -130,4 +135,23 @@ form ux-actions button {
 	background-color: var(--accent);
 	color: #fff;
 	border-radius: 5px;
+}
+
+/* list table */
+table {
+	border-collapse: collapse;
+	margin-bottom: var(--space);
+}
+th, td {
+	vertical-align: top;
+	text-align: left;
+	border-bottom: solid 1px var(--divider);
+}
+table th {var(--secondary-text);}
+table a {
+	display: block;
+	line-height: 24px;
+	padding: 12px 4px;
+	color: inherit;
+	text-decoration: none;
 }

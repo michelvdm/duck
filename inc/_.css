@@ -11,7 +11,7 @@ nav a {color: inherit; display: block; text-decoration: none; font-size: 20px; l
 
 /* theme */
 :root {
-	--primary: #2D3844;
+	--primary: #006;
 	--accent: #F7941D; 
 	--text: #333; 
 	--offwhite: #f0f0f0;

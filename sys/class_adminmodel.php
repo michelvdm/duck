@@ -10,4 +10,9 @@ class AdminModel extends BaseModel {
 		return $this->db->query("SHOW TABLES")->fetchAll(PDO::FETCH_COLUMN);
 	}
 
+	function getView($name) {
+		$q=$this->db->query("SELECT * FROM $name");
+		return $q->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 }

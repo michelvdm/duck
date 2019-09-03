@@ -17,8 +17,35 @@ class AdminView extends BaseView {
 		$here=$this->data['navActive'];
 		foreach ($items as $item) {
 			extract($item);
-			tag('a href="'.ROOT.$link.'"', $label);
+			$class=($key==$here)?' class="ux-active"':'';
+			tag('a href="'.ROOT.$link.'"'.$class, $label);
 		}
+	}
+
+	function renderView(){
+		extract($this->data);
+		$noView=['unid', 'password'];
+		tag('h1', $title);
+		if(sizeof($items)==0){
+			tag('p', 'No items found.');
+		} else {
+			out('<table class="list">');
+			out('<tr>');
+			foreach ($items[0] as $key=>$value) {
+				if(!in_array($key, $noView)) tag('th', ucfirst($key));
+			}
+			out('</tr>');
+			foreach ($items as $item) {
+				$link=$linkBase.$item['unid'];
+				out('<tr>');
+				foreach ($item as $key=>$value) {
+					if(!in_array($key, $noView)) tag('td', "<a href=\"$link\">$value</a>");
+				}
+				out('</tr>');
+			}
+			out('</table>');
+		}
+		
 	}
 
 	function render($tpl) {

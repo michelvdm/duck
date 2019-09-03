@@ -21,6 +21,25 @@ class AdminController extends BaseController {
 		]);
 	}
 
+	function getSettings(){
+		$this->setData([
+			'type'=>'view', 
+			'title'=>'Settings',
+			'linkBase'=>ROOT.'/admin/settings/item/',
+			'items'=>$this->model->getView('settings')
+		]);
+	}
+
+	function getUsers(){
+			$this->setData([
+				'type'=>'view', 
+				'title'=>'Users',
+				'linkBase'=>ROOT.'/admin/users/item/',
+				'items'=>$this->model->getView('users')
+			]);
+		}
+
+
 	function getNav(){
 		$tables=$this->model->getTables();
 		$nav=[
