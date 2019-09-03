@@ -47,8 +47,12 @@ class BaseView {
 	}
 
 	function renderUserInfo(){
-		if(isset($_SESSION['userName'])) echo $_SESSION['userName'], ' - <a href="'.ROOT.'/logout">Log out</a>';
-		else echo 'Anonymous - <a href="'.ROOT.'/login">Log in</a>';
+		if(isset($_SESSION['userName'])){
+			extract($_SESSION);
+			$user=$userName;
+			$role=ROLES[$access];
+			echo "$user ($role) - <a href=\"".ROOT."/logout\">Log out</a>";
+		} else echo 'Anonymous - <a href="'.ROOT.'/login">Log in</a>';
 	}
 
 	function render($tpl) {

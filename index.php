@@ -7,6 +7,8 @@ define('DEBUG', true);
 ini_set('display_errors', DEBUG?1:0); 
 error_reporting(DEBUG?E_ALL:0);
 
+define('ROLES', ['', 'guest', 'author', 'editor', 'admin', 'superadmin']);
+
 spl_autoload_register(function($class, $data=null){require_once(str_replace('\\', '/', BASE.'/sys/class_'.strtolower($class).'.php'));});
 
 function out($val){echo $val, PHP_EOL;}

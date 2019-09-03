@@ -30,6 +30,7 @@ class BaseController {
 		$user=$this->model->getUserNamed($userName);
 		if($user && password_verify($password, $user['password'])) {
 			$_SESSION['userName']=$userName;
+			$_SESSION['access']=$user['accesslevel'];
 			$this->goAndSay('/', 'You are now logged in as '.$userName);
 		} else {
 			$this->goAndSay('/login', 'Log in failed.', 'error');

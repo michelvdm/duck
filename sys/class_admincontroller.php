@@ -7,6 +7,7 @@ class AdminController extends BaseController {
 		$this->model=new AdminModel($this->dbConfig);
 		$this->data=$this->model->getConfig();
 		date_default_timezone_set($this->data['timezone']);
+		
 		array_shift($request);
 		if($request[0]=='')$request[0]='index';
 		$this->request=$request;
