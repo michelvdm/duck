@@ -44,6 +44,7 @@ class BaseController {
 	}
 
 	function handleRequest($request){
+		out('handleRequestBASE');
 		$method=strtolower($_SERVER['REQUEST_METHOD']);
 		if($request[0]=='')$request[0]='index';
 		$fn=$method.ucfirst($request[0]);
