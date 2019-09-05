@@ -126,14 +126,22 @@ form ux-actions button {
 	border-radius: 5px;
 }
 
-.ux-admin-link {
+/* list table */
+table {
+	border-collapse: collapse;
+	margin-bottom: var(--space);
+	outline: dashed orange;
+}
+th, td {
+	vertical-align: top;
+	text-align: left;
+	border-bottom: solid 1px var(--divider);
+}
+table th {var(--secondary-text);}
+table a {
 	display: block;
-	padding: 12px;
-	height: 24px;
-	position: fixed;
-	bottom: 8px;
-	right: 8px;
-	background-color: var(--offwhite);
+	line-height: 24px;
+	padding: 12px 4px;
 	color: inherit;
-	border-radius: 5px;
+	text-decoration: none;
 }

@@ -31,7 +31,7 @@ class AppController {
 
 	function postLogin(){
 		extract($_POST);
-		$user=$this->model->getUserNamed($userName);
+		$user=$this->model->getUserByName($userName);
 		if($user && password_verify($password, $user['password'])) {
 			$_SESSION['userName']=$userName;
 			$_SESSION['access']=$user['accesslevel'];
@@ -47,14 +47,46 @@ class AppController {
 		$this->goAndSay('/', 'You are logged out.');
 	}
 
-	function checkAccess($table){}
+	function checkTableAccess($table){
+		$userAccess=isset($_SESSION['access'])?$_SESSION['access']:0;
+		$accessNeeded=$this->data['tables'][$table]['access'];
+		return $userAccess>=$accessNeeded;
+	}
+
+	function crud($table){
+		if(!$this->checkTableAccess($table)) die("Access denied.");
+		if($this->method=='post'){
+			out('no rule for posts');
+		} else {
+			switch($this->request[1]){
+				case '': $page=1; break;
+				case 'item': 
+					$unid=$this->request[2]; 
+					break;
+				case 'new': 
+					$this->setData([
+						'title'=>'New '.substr($table, 0, -1),
+						'type'=>'new',
+						'action'=>'create',
+						'table'=>$table,
+						'structure'=>$this->model->getStructure($table)
+					]);
+					new AppView($this->data);
+					break;
+				default: $page=$this->request[1]*1;
+			}
+			out('view: '.$table.' - page: '.$page);			
+		}
+	}
 
 	function handleRequest(){
-		$top=REQUEST[0];
-		if(in_array($top, $this->config['tables'])){
-			if($this->checkAccess($top)) out('user has access');
-			else out('access denied');
-		}
+		$method=$this->method=strtolower($_SERVER['REQUEST_METHOD']);
+		$request=$this->request=explode('/', (isset($_GET['url'])?$_GET['url']:'index').'//////////');
+		$top=$request[0];
+		if(array_key_exists($top, $this->data['tables'])) die($this->crud($top));
+		$fn=$method.ucfirst($top);
+		if(method_exists( $this, $fn)) die(call_user_func(array($this, $fn)));
+		$this->handleError(500, 'Method does not exist: '.$fn);
 	}
 
 }

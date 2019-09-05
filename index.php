@@ -1,14 +1,12 @@
 <?php
 define('START_TIME', microtime(true));
-define('DEBUG', true);
 define('BASE', getcwd());
+define('ROOT', dirname($_SERVER['PHP_SELF']));
+define('DEBUG', true);
+define('ROLES', ['', 'guest', 'author', 'editor', 'admin', 'superadmin']);
 
 ini_set('display_errors', DEBUG?1:0); 
 error_reporting(DEBUG?E_ALL:0);
-
-define('ROOT', dirname($_SERVER['PHP_SELF']));
-define('METHOD', strtolower($_SERVER['REQUEST_METHOD']));
-define('REQUEST', explode('/', (isset($_GET['url'])?$_GET['url']:'index').'//////////'));
 
 function out($val){echo $val, PHP_EOL;}
 
