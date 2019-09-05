@@ -6,9 +6,13 @@
 */
 
 return [
-	'dbname'=>'sample', 
-	'host'=>'localhost', 
-	'user'=>'root', 
-	'password'=>''
+	'appName'=>'Web Duck',
+	'db'=>[
+		'dbname'=>'sample', 
+		'host'=>'localhost', 
+		'user'=>'root', 
+		'password'=>''
+	],
+	'timezone'=>'Europe/Brussels'
 ];
 
